@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './containers/App/App'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import './index.css'
+// import './index.css'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 

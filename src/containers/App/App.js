@@ -3,7 +3,7 @@ import './App.css'
 
 import { connect } from 'react-redux'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import AppBarFI from '../../components/AppBarFI'
+// import AppBarFI from '../../components/AppBarFI'
 
 import SecureRouter from '../Router/SecureRouter'
 
@@ -73,7 +73,7 @@ class App extends Component {
     //     </MuiThemeProvider>
     //   )
     // }
-    const { classes } = this.props
+    // const { classes } = this.props
     return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline>
