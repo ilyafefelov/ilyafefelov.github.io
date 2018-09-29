@@ -1,35 +1,42 @@
 import React, { Component } from 'react'
-import './App.css'
-
+// import './App.css'
 import { connect } from 'react-redux'
 import CssBaseline from '@material-ui/core/CssBaseline'
 // import AppBarFI from '../../components/AppBarFI'
-
 import SecureRouter from '../Router/SecureRouter'
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles'
 
-import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles'
+import WebFontLoader from '../../Utiles/WebFontLoader'
 
+WebFontLoader()
 
 const theme = createMuiTheme({
+  typography: {
+    fontFamily: WebFontLoader(),
+    fontSize: 20,
+    fontWeight: 600
+  },
   palette: {
     primary: {
-      main: '#00695c',
-      light: '#439889',
+      main2: '#00695c',
+      main: '#C4E23B',
+      light: '#01FF70',
       dark: '#003d33',
-      accent: '#00bcd4',
+      accent: '#C4E23B',
       accentOpacity: '#00bcd40f',
       contrastText: '#fff'
     },
     secondary: {
       main: '#e65100',
-      light: '#ff833a',
+      light: '#C492B1',
       dark: '#ac1900',
       contrastText: '#000'
     },
     background: {
       main: '#00796B',
       grey: '#fafafa',
-      darkgrey: '#929292'
+      darkgrey: '#264653',
+      blue: '#1B9AAA'
     }
   },
   status: {
@@ -37,15 +44,22 @@ const theme = createMuiTheme({
   }
 })
 
-const styles = () => ({
+const styles = (theme) => ({
+  root: {
+    fontFamily: theme.typography.fontFamily
+  },
   loaderApp: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     height: '100vh',
     background: '#00796B'
+  },
+  appConfig: {
+    // fontFamily: "'Roboto', sans-serif"
   }
-})
+}
+)
 
 class App extends Component {
   componentWillMount () {
@@ -56,7 +70,7 @@ class App extends Component {
   }
 
   render () {
-    // const { user, classes } = this.props
+    const { classes } = this.props
 
     // if (!user) {
     //   return <div className={classes.loaderApp}>
@@ -75,14 +89,15 @@ class App extends Component {
     // }
     // const { classes } = this.props
     return (
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline>
-          {/*<AppBarFI classes={classes} />*/}
-          {/* <HeaderRouter /> */}
-          {/* <SecureRouter wsHandler /> */}
-          <SecureRouter />
-        </CssBaseline>
-      </MuiThemeProvider>
+      <div className={classes.root}>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline>
+            {/* <AppBarFI classes={classes} /> */}
+            {/* <HeaderRouter /> */}
+            {/* <SecureRouter wsHandler /> */}
+            <SecureRouter classNames={classes.appConfig} />
+          </CssBaseline>
+        </MuiThemeProvider></div>
     )
   }
 }

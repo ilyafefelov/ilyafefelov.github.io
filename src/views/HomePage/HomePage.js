@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/es/Typography/Typography'
+import Paper from '@material-ui/core/es/Paper/Paper'
+import { withTheme } from '@material-ui/core/styles'
 
+let cardWidth = 400
 const styles = theme => ({
   main: {
     display: 'flex',
@@ -14,10 +18,26 @@ const styles = theme => ({
     width: '50%'
   },
   leftHalf: {
-    background: 'pink'
+    background: theme.palette.secondary.light
   },
   rightHalf: {
-    background: 'cyan'
+    background: theme.palette.primary.accent
+  },
+  card: {
+    flexDirection: 'column',
+    display: 'flex'
+  },
+  cardCentered: {
+    display: 'flex',
+    alignSelf: 'center',
+    justifySelf: 'center',
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    marginLeft: 'calc(50vw - ' + cardWidth / 2 + 'px)',
+    width: cardWidth,
+    height: 100,
+    border: '1px dotted dimgrey'
   },
   heroUnit: {
     backgroundColor: theme.palette.background.paper
@@ -43,11 +63,14 @@ const styles = theme => ({
   cardGrid: {
     padding: `${theme.spacing.unit * 8}px 0`
   },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column'
+  title: {
+    color: theme.palette.background.blue
   },
+  // card: {
+  //   // height: '100%',
+  //   display: 'flex',
+  //   flexDirection: 'column'
+  // },
   cardMedia: {
     paddingTop: '56.25%' // 16:9
   },
@@ -67,13 +90,22 @@ class HomePage extends Component {
 
   render () {
     const { classes } = this.props
+    const cardTitleText = 'full_iron'
+    const cardBodyText = 'Under Construction'
+
+    const { theme } = this.props
+    console.log(theme)
 
     return (
       <React.Fragment>
 
-
         <div className={classnames(classes.main)}>
           <div className={classnames(classes.half, classes.leftHalf)} />
+          <Paper rounded={'true'} className={classnames(classes.card, classes.cardCentered)}
+            elevation={1}>
+            <Typography className={classes.title} variant={'title'}> {cardTitleText} </Typography>
+            <Typography color='textSecondary' variant={'body1'}> {cardBodyText} </Typography>
+          </Paper>
           <div className={classnames(classes.half, classes.rightHalf)} />
         </div>
 
@@ -85,4 +117,4 @@ HomePage.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(HomePage)
+export default withTheme()(withStyles(styles)(HomePage))
